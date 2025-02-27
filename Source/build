@@ -62,6 +62,21 @@ else
     objectFile="-o $fileName"
 fi
 
+# If the user inadvertently stuck a .s or .S
+# suffix on the file name, abort before we
+# get into trouble:
+
+case $fileName in *.S) 
+	echo "Argument should not have .S suffix";
+	exit 0;;
+esac
+
+case $fileName in *.s) 
+	echo "Argument should not have .s suffix";
+	exit 0;;
+esac
+
+
 # If the executable already exists, delete it:
 
 if test -e "$fileName"; then
